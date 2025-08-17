@@ -72,7 +72,7 @@ if st.session_state.get('authentication_status'):
     model: str = st.selectbox("Model", options=MODEL_LIST)
 
     selection = st.radio(
-        "Sentinel AI Tools:",
+        "Tools:",
         ["Advisor", "TripAdvance"],  
         captions=[
             "*Insights for corporate and personal protection*",
