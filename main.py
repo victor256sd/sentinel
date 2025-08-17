@@ -62,8 +62,8 @@ if st.session_state.get('authentication_status'):
     INSTRUCTION = f.decrypt(INSTRUCTION_ENCRYPTED).decode()
 
     # Set page layout and title.
-    st.set_page_config(page_title="Sentinel AI", page_icon=":shield:", layout="wide")
-    st.header(":shield: Sentinel AI")
+    st.set_page_config(page_title="SecAware", page_icon=":shield:", layout="wide")
+    st.header(":shield: SecAware")
     
     # Field for OpenAI API key.
     openai_api_key = os.environ.get("OPENAI_API_KEY", None)
@@ -73,7 +73,7 @@ if st.session_state.get('authentication_status'):
 
     selection = st.radio(
         "Sentinel AI Tools:",
-        ["Advisor", "Tripaware"],  
+        ["Advisor", "TripAdvance"],  
         captions=[
             "*Insights for corporate and personal protection*",
             "*Travel security recommendations*",
@@ -165,7 +165,7 @@ if st.session_state.get('authentication_status'):
                 
                 st.markdown(f"**Total Cost:** {formatted_cost}")
 
-    elif selection == "Tripaware":
+    elif selection == "TripAdvance":
         # Create new form to search aitam library vector store.    
         with st.form(key="qa_form", clear_on_submit=False, height=300):
             query = st.text_area("**Inform your travel, stay safe on the move:**", height="stretch")
