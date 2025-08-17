@@ -7,7 +7,7 @@ credentials:
     jin:
       email: jin@aberration.com
       name: Jin
-      password: $2b$12$TwkhVVBAOEzpER6l2NQdMuw0VwWtf2L/oWez/2/kkrnmOSWmqJeAW
+      password: $2b$12$4V.TcJgshhgAT62U4rgKEuYiI2LBKnaeDuwzLuTMi9xlkLLgu3zy6
 cookie:
   expiry_days: 30
   key: sentinel_signature_key # Must be string
