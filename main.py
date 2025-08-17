@@ -194,15 +194,15 @@ if st.session_state.get('authentication_status'):
                     instructions = INSTRUCTION2,
                     input = query,
                     model = model,
-                    temperature = 0.6,
+                    temperature = 1.0,
                     tools = [
                         {
                             "type": "web_search"
                         },
-                        {
-                            "type": "file_search",
-                            "vector_store_ids": [VECTOR_STORE_ID],
-                        }
+                        # {
+                        #     "type": "file_search",
+                        #     "vector_store_ids": [VECTOR_STORE_ID],
+                        # }
                     ],
                     include=["output[*].file_search_call.search_results"]
                 )
