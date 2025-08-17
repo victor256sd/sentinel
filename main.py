@@ -70,94 +70,106 @@ if st.session_state.get('authentication_status'):
 
     # Retrieve user-selected openai model.
     model: str = st.selectbox("Model", options=MODEL_LIST)
-        
+
+    selection = st.radio(
+        "Sentinel AI Tools:",
+        ["Advisor", "Tripaware"],  
+        captions=[
+            "*Insights for corporate and personal protection*",
+            "*Travel security recommendations*",
+        ],
+    )
+    
     # If there's no openai api key, stop.
     if not openai_api_key:
         st.error("Please enter your OpenAI API key!")
         st.stop()
-    
-    # Create new form to search aitam library vector store.    
-    with st.form(key="qa_form", clear_on_submit=False, height=300):
-        query = st.text_area("**Ask about travel policies and procedures:**", height="stretch")
-        submit = st.form_submit_button("Send")
-        
-    # If submit button is clicked, query the aitam library.            
-    if submit:
-        # If form is submitted without a query, stop.
-        if not query:
-            st.error("Enter a question to search travel policies!")
-            st.stop()            
-        # Setup output columns to display results.
-        answer_col, sources_col = st.columns(2)
-        # Create new client for this submission.
-        client2 = OpenAI(api_key=openai_api_key)
-        # Query the aitam library vector store and include internet
-        # serach results.
-        with st.spinner('Searching...'):
-            response2 = client2.responses.create(
-                instructions = INSTRUCTION,
-                input = query,
-                model = model,
-                temperature = 0.6,
-                tools = [{
-                            "type": "file_search",
-                            "vector_store_ids": [VECTOR_STORE_ID],
-                }],
-                include=["output[*].file_search_call.search_results"]
-            )
-        # Write response to the answer column.    
-        with answer_col:
-            cleaned_response = re.sub(r'【.*?†.*?】', '', response2.output[1].content[0].text)
-            st.markdown("#### Response")
-            st.markdown(cleaned_response)
-            # st.session_state.ai_response = cleaned_response
-        # Write files used to generate the answer.
-        with sources_col:
-            st.markdown("#### Sources")
-            # Extract annotations from the response, and print source files.
-            annotations = response2.output[1].content[0].annotations
-            retrieved_files = set([response2.filename for response2 in annotations])
-            file_list_str = ", ".join(retrieved_files)
-            st.markdown(f"**File(s):** {file_list_str}")
 
-            st.markdown("#### Token Usage")
-            input_tokens = response2.usage.input_tokens
-            output_tokens = response2.usage.output_tokens
-            total_tokens = input_tokens + output_tokens
-            input_tokens_str = f"{input_tokens:,}"
-            output_tokens_str = f"{output_tokens:,}"
-            total_tokens_str = f"{total_tokens:,}"
-
-            st.markdown(
-                f"""
-                <p style="margin-bottom:0;">Input Tokens: {input_tokens_str}</p>
-                <p style="margin-bottom:0;">Output Tokens: {output_tokens_str}</p>
-                """,
-                unsafe_allow_html=True
-            )
-            st.markdown(f"Total Tokens: {total_tokens_str}")
-
-            if model == "gpt-4.1-nano":
-                input_token_cost = .1/1000000
-                output_token_cost = .4/1000000
-            elif model == "gpt-4o-mini":
-                input_token_cost = .15/1000000
-                output_token_cost = .6/1000000
-            elif model == "gpt-4.1":
-                input_token_cost = 2.00/1000000
-                output_token_cost = 8.00/1000000
-            elif model == "o4-mini":
-                input_token_cost = 1.10/1000000
-                output_token_cost = 4.40/1000000
-
-            cost = input_tokens*input_token_cost + output_tokens*output_token_cost
-            formatted_cost = "${:,.4f}".format(cost)
+    if selection == "Advisor":
+        # Create new form to search aitam library vector store.    
+        with st.form(key="qa_form", clear_on_submit=False, height=300):
+            query = st.text_area("**Ask security questions, get answers:**", height="stretch")
+            submit = st.form_submit_button("Send")
             
-            st.markdown(f"**Total Cost:** {formatted_cost}")
+        # If submit button is clicked, query the aitam library.            
+        if submit:
+            # If form is submitted without a query, stop.
+            if not query:
+                st.error("Enter a question to search travel policies!")
+                st.stop()            
+            # Setup output columns to display results.
+            answer_col, sources_col = st.columns(2)
+            # Create new client for this submission.
+            client2 = OpenAI(api_key=openai_api_key)
+            # Query the aitam library vector store and include internet
+            # serach results.
+            with st.spinner('Searching...'):
+                response2 = client2.responses.create(
+                    instructions = INSTRUCTION,
+                    input = query,
+                    model = model,
+                    temperature = 0.6,
+                    tools = [{
+                                "type": "file_search",
+                                "vector_store_ids": [VECTOR_STORE_ID],
+                    }],
+                    include=["output[*].file_search_call.search_results"]
+                )
+            # Write response to the answer column.    
+            with answer_col:
+                cleaned_response = re.sub(r'【.*?†.*?】', '', response2.output[1].content[0].text)
+                st.markdown("#### Response")
+                st.markdown(cleaned_response)
+                # st.session_state.ai_response = cleaned_response
+            # Write files used to generate the answer.
+            with sources_col:
+                st.markdown("#### Sources")
+                # Extract annotations from the response, and print source files.
+                annotations = response2.output[1].content[0].annotations
+                retrieved_files = set([response2.filename for response2 in annotations])
+                file_list_str = ", ".join(retrieved_files)
+                st.markdown(f"**File(s):** {file_list_str}")
+    
+                st.markdown("#### Token Usage")
+                input_tokens = response2.usage.input_tokens
+                output_tokens = response2.usage.output_tokens
+                total_tokens = input_tokens + output_tokens
+                input_tokens_str = f"{input_tokens:,}"
+                output_tokens_str = f"{output_tokens:,}"
+                total_tokens_str = f"{total_tokens:,}"
+    
+                st.markdown(
+                    f"""
+                    <p style="margin-bottom:0;">Input Tokens: {input_tokens_str}</p>
+                    <p style="margin-bottom:0;">Output Tokens: {output_tokens_str}</p>
+                    """,
+                    unsafe_allow_html=True
+                )
+                st.markdown(f"Total Tokens: {total_tokens_str}")
+    
+                if model == "gpt-4.1-nano":
+                    input_token_cost = .1/1000000
+                    output_token_cost = .4/1000000
+                elif model == "gpt-4o-mini":
+                    input_token_cost = .15/1000000
+                    output_token_cost = .6/1000000
+                elif model == "gpt-4.1":
+                    input_token_cost = 2.00/1000000
+                    output_token_cost = 8.00/1000000
+                elif model == "o4-mini":
+                    input_token_cost = 1.10/1000000
+                    output_token_cost = 4.40/1000000
+    
+                cost = input_tokens*input_token_cost + output_tokens*output_token_cost
+                formatted_cost = "${:,.4f}".format(cost)
+                
+                st.markdown(f"**Total Cost:** {formatted_cost}")
 
-    # elif not submit:
-    #         st.markdown("#### Response")
-    #         st.markdown(st.session_state.ai_response)
+    elif selection == "Tripaware":
+        # Create new form to search aitam library vector store.    
+        with st.form(key="qa_form", clear_on_submit=False, height=300):
+            query = st.text_area("**Inform your travel, stay safe on the move:**", height="stretch")
+            submit = st.form_submit_button("Send")
 
 elif st.session_state.get('authentication_status') is False:
     st.error('Username/password is incorrect')
