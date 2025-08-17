@@ -166,10 +166,95 @@ if st.session_state.get('authentication_status'):
                 st.markdown(f"**Total Cost:** {formatted_cost}")
 
     elif selection == "TripAdvance":
+
+        INSTRUCTION2_ENCRYPTED = b'gAAAAABoohzmbkbh9MBpPT1LeksbBCDPJZez-1RnyvCyP6XS4Kh3lXVKvjwsnUZ5x7nwbEtUHYpzV45DCn5-eSzT6HSP__6PBIjnSmHbKTlM52pAa2nsdl6EB3czthpDH0w1YhYKF-l_doYMckkIupbQGe5MS69zegKb05Jeu4FGqINUEcQIeYTNoaR_qwH8KqP44mGW5FeEYrVbPabueZUjrLV7JIxjrs_qSl2hJZQTk2y5MR1-HxmoOLtmjWXS0mYhnszvzQRGnVSg0rbfZGpm_Dk9tF1t7ew2Q6LOeeoUWdVoHL4U3ez3lZ1WJ7maFvBI20sWYByJcVt-GofnsOTKycdKzbypUJ02T-hwZu5jX5O2za3p1r8_NL2eaTP1Kl_1p3U3a0sN8HzP8Xn1g-imxqxrRCzmY_S4ldGOdbn_2QK4Nh2Jck2YvJ3HYe5yDy_dwQ_uSkDz7Yw6eimc8eVVxbychNQ-2MFAzNXS-cyiO1tSNos9OOWGYnpeld01E3ndS1y3KtObSjoics3Tnyq-D-SLArMVeU3PoneVUz3aqp6WEOW5rSWIEMut1--ynPQP8k5D0NtszmeUsb0H244U4EKvU5uTgkSCJjKAH2uTR5k23g64KKd7P002kNwoHagWw1WElvI-PJbxAwnO1DhDBNZLgJBxlTXmBBqCi_871Xb2vf0thm8APn_Z1oNDcQ0mSwYHP1-PocpMfhQnKvRA6hakGguJILSxxDe-PMNOjQFS7J4qMIFjDr0ME19uyOoZRTZlK8krbhV8UWp-0z9i7cl8OdU3UragPEhkJyJdwgAVeA8Cr4Wv9zp2AMD1VOa7D-xqY4R-cbsqIUkoo45yhf3gEtQYXsLSbRNAGUOGsllfojP7_9MUVs0YY-eihlxwzL3O2fyDa4DhPcQZuxRauB8aFunxyCvmwfvdwEOOc7ejK03H9WSTnWTfHxjN680Rzs7bC0Bdb7w9SChTmqCUauakxC6vypfHOiB6j9MRzAz0wbbtPYQgaspA7cQ0pXtrBB3J8NMLFwYGScVInpbPHO5NrkfR7vxCTj-x9P3WkC4wAhyhO1jCqzfreVIKvzcdTd53x2ayiGkz1Qj622jv6jVwL6LlvL68v1FySGHNiLFofI517Yi6d2SL5hS-ITOJ1KOl9PZV4iGAsxbTfP_7R4SnInJCViK69FQZkRWXxP2c0QWXoA-5yEKBHbIFr4r9YqlpwuB6vhF4iHmzhxDH2A1fNhjrcJVWVRhBvuMhcVzy87GgpUu_m2yLH0LUlwxnZWwhL-feFAfZ-X4vltLUgARZPxLqfnwdvr4z68A5bVMFiDvjnzMEVez5nhWP66ejbAJWPVIgGg7dOxgSQ8AakNRwjZmNmQ3KtFaKSdLG1Xg0tp6YcAR6twjEo8hVu7u2ATPRNdWyrvLVBxbg6JCc1sdiLUkRSHkCvFf123WS2v_CLXef6KvIQYKv_bpDpHnmoV_jaI5CrSNe6pKBsd_XiWJ92nuFhuzGBnAYpapuMkpjDn1Tt1_z49qztt8q7V7-pIOW-W2a2hDU8g11nNYKYyzJ9MwF6yEr-8fpANsRBpmxWKf4Hf_WE7wxGLcMYN9_oA5ASTUIDaDdBNYMgpPEjS8SHBMk5y07Mqk_9CzqQTV6qU0CzDLVUEqETqcU01LkqddYsVoLUMYdbolRP_Tof4pZAqV5RhtNzcdfNkwGDkkElOgmkpPI-c9ykYKrfuz_zbaBQrM6da2SPlX1PC3CybAmIKf5LDk81EY3DOzuYytXqWyduUKSMkOCZlgMZhpHZzLrwhgIgCdIHlOhw3GX5kD-A56RkmMrqKY0wnyXOov-wW_-Og7QSGh-LEx3typ15SNcrone9u7QEDMSiSubdiq7XcCw967rQmBiylCImLOXMuQY6lBcA8v-r7RIcciqED_DJlVgiLE79F8Fj_SsgsJY_DO-xX97ifOuO8_VnDwn6j2NJwdrZayvioBs97IT1uL7r_bKPXDekEsIX6nejmLRCUoRW0_xwaX0KPL1xs5aObYecja-k82ihLV1TsM0q3qC7UUGqVs5iP_CFyy00D749Ybk5cKSQP9yV09V80nXbbfqHf71htDGYMiVpQRuGpXI9UuS_Gd8rHLGqhcGNWe9nRJaXkCRPksYHPI9Zx171bvHZ6Nx1Ly4NHy0E6f_71Wn72SUh7zefb0rf3PWt1ojUFv90y17267_vRm_s4EvQrmXgR7slawOMk7-wzY3lCnnSglM4r4qxlspAmBc0e9oF3ZMRsKVLjouZEbpTmKfyL4BlaSYTlTIkwm7XUcf7JrNKT4Hy4UC4F5_sDhUZUffpiKudMovLhX8YrPcdBGUQHFUF7X3lwu1-3c9ta1778M7JupNAmoah3yqiND-hQ8PqDQBqAmFmZf1IqNPHTblI5jo6rRAol4jPoGODhbKMmeiMRN7qziUbouzkqiyGNegwyrC4wNVZC5v0k0e03IlcgyD2qQP_nvcXIqaXMhP2cKGetrQ2427pXI6tfYuPJkF4rNLzigkMvvdHsOBbPjRAZoUvPVPxrjSyuzafobOm1b2EIfsQPYEoc4f27orWEdROMDq0GG9hb3XcBEigL9dHFu_ys7KcMP_LW_S2PxwlTiUISjKVJgT_y5T7oEyjQABNBigVpxdzz-nNpelMUuMurRS84_TTOdzjCDNLs23AwdCcEBgCOjFaAB-Bye6pOJwOgY_HsvNH083SgvKDdw49af7eFoP096jhdRUx0FHeznUp0CMo_iPDz5akXn3XVbZl_1txqDhbqLW1851kV-CQtWzSs6uysjPssLZh0Dn0dtVE94hPWrjrGejtrMF0PE0_gh1MwdIAwTdO96vrUifbblgrI_r-5C0oWP4LtRC0z8HhBhaMCn5R_r-9NQaLTUTGhSuXV6E2u3iy4k-MNTs9gFxBJ-JinmKwfWtJ9Uq_4HgQXTgoaCfDzmaOtdESYPTIlKZIbj42g0W_6p-zVat3JXxm5xNWXcJ6WRMvTDlifGBk0-jsdndl0xHbW_7EGNmBnG50srMxlQNoTF8vMfPVAG-acVluRKMW7kYS1nqj_jezAhc59sP91_lXGgift4WCMkJ4eZ9SGcBCU86NubGfmgY-NGyCmFDbpWvkFgRyasWUnTK5XQmWd0dk522HFm7nf5nU6qyKWahgxnkoDYjo4RpsdJEqT03FxUrSiJ-q8MU-nISbxfLbUdFV657ZFMhxri5jafcD0kI7W0pQC-Cmy_LuHX7rG4Cq2yqMxTi1r0EhWDyjYTGN1z1neYR9yTdcy6P6QwJyVKD523jNfMvU3sFmVaBvyhs0psMgIScXxqVSJZfNlJAqMjWKxMRxmFIpXd4W01ogmc9suh0qg1wFhyalHH6I3IqgCUPuwJh_hBaJxml4nQg11G0eDpNi-zUzEcoVSK0q1lrGRb_uuyx2X7JKJGi8MviPLB_UehCe7nWdM9GYdbgq8P6Qmarfa9Lxqoopl_-Trpb1mDVB1dR9aar2hWdunsWmRKokiGPVHlrpQLhV0En2kEyrVkL8jqXNq0RNJJPebDUlJ68biVdm35ZXTtd7-Q73f_VaO7G93hFjhmciVhhx0EPdkJK3kiyJgxWV1yWpIWRdxjCMpOCHBq77waQYEq3z_x9nlhmCb19rn-cIKP1lMryLbbetpe1gq0-KVqaP3Vd__cwsxd982F3upWqKOIKJVlBi_zyhqnePT9oa6k8wfg4BmzzBCTu6y0CVRH_kGrRvzQinjIaETFqdsxSmU4-Ay-RNep94dkkLveEGLIadiUIzci3ePNPZznCvwxDwWRNa8qwt73X5b_0TMJlNsj2GTLp8SAaZutnJbKcdHidvk2ma6hmvofe4PlHF6eaNxF0xplmEMEJgXDozSBiza9uXmWF_1XxKo03wnNUT_YSho5sAF_cG-mENXTAuH7z1vvhLPJqt0zYDnGSI4l5-wYBHuVpDxVjAjVP-AU6sScYeXZ4HX3570NCtAImpxCG5KX0To33CmGIkqF3u8pLmDK_OJd58FqBQfBdd-Qe5jso21X2_QBnqr6P3h9s1h3W_LAzh2dL7su6hxgplXthYUH-lSw8k6d8esP9cWlbZTZcmciubSoubzcLEzbvSrFZa9PzGm4uAk9A_uZ_33x-MqEprMyyeDlnFlpaKXkNH-QNTrq5DePeP7xA40xVoGPd-1rTJXaitvUlOmmYprKxXOVpY0cqsymCZfqeRwrTQCW40h75_Qg88gX3j1qaYSiat1aGhzvs_Wwzv4h_iDT6nJx5pmHWESycM5Qq6Js4n7vwiJMhHhBIZu1rsFjCfQIiBsEnCQqwCbcadiRCN95jpIeimUMQCnIVr84sBgzEMMKBr_3YxziGVY3pVTp_tGAJxUY4oikJp5NoPN-SDBWAxVNPLLaLi_kxpNbXs4klxuhVQEaFGsfs9G_mX5KLaMt0-MG36Ht3NpYaxvk89DCGBlFFqefx82Re4CZLHQJxATdVFIhz3Mxl3g6Xw1nh_DLQq9tzb5t6_C4VSmvWRv4RlWssAicm7yWh92TQO4-eJKZPbH_sbW01Kwa7w5LoA9zkdshmI9r3QgWsfHuvaWrg1j7kfCq8Y-edOA6ZIV4h3Hsb9QZyi9NnlO5kcXf836Y6VySeSUssuT__GJUNiDT7S_e0a3k_yBrwlGHhrIB1dsyuoI-dsAXCocWpNkjzxvSL03ql65m0ekPxIT8RKJ0='
+        key = st.secrets['INSTRUCTION_KEY'].encode()
+        f = Fernet(key)
+        INSTRUCTION2 = f.decrypt(INSTRUCTION2_ENCRYPTED).decode()
+
         # Create new form to search aitam library vector store.    
         with st.form(key="qa_form", clear_on_submit=False, height=300):
             query = st.text_area("**Inform your travel, stay safe on the move:**", height="stretch")
             submit = st.form_submit_button("Send")
+
+        # If submit button is clicked, query the aitam library.            
+        if submit:
+            # If form is submitted without a query, stop.
+            if not query:
+                st.error("Enter a request!")
+                st.stop()            
+            # Setup output columns to display results.
+            answer_col, sources_col = st.columns(2)
+            # Create new client for this submission.
+            client2 = OpenAI(api_key=openai_api_key)
+            # Query the aitam library vector store and include internet
+            # serach results.
+            with st.spinner('Searching...'):
+                response2 = client2.responses.create(
+                    instructions = INSTRUCTION2,
+                    input = query,
+                    model = model,
+                    temperature = 0.6,
+                    tools = [
+                        {
+                            "type": "file_search",
+                            "vector_store_ids": [VECTOR_STORE_ID],
+                        },
+                        {
+                            "type": "web_search"
+                        }
+                    ],
+                    include=["output[*].file_search_call.search_results"]
+                )
+            # Write response to the answer column.    
+            with answer_col:
+                cleaned_response = re.sub(r'【.*?†.*?】', '', response2.output[1].content[0].text)
+                st.markdown("#### Response")
+                st.markdown(cleaned_response)
+                # st.session_state.ai_response = cleaned_response
+            # Write files used to generate the answer.
+            with sources_col:
+                st.markdown("#### Sources")
+                # Extract annotations from the response, and print source files.
+                annotations = response2.output[1].content[0].annotations
+                retrieved_files = set([response2.filename for response2 in annotations])
+                file_list_str = ", ".join(retrieved_files)
+                st.markdown(f"**File(s):** {file_list_str}")
+    
+                st.markdown("#### Token Usage")
+                input_tokens = response2.usage.input_tokens
+                output_tokens = response2.usage.output_tokens
+                total_tokens = input_tokens + output_tokens
+                input_tokens_str = f"{input_tokens:,}"
+                output_tokens_str = f"{output_tokens:,}"
+                total_tokens_str = f"{total_tokens:,}"
+    
+                st.markdown(
+                    f"""
+                    <p style="margin-bottom:0;">Input Tokens: {input_tokens_str}</p>
+                    <p style="margin-bottom:0;">Output Tokens: {output_tokens_str}</p>
+                    """,
+                    unsafe_allow_html=True
+                )
+                st.markdown(f"Total Tokens: {total_tokens_str}")
+    
+                if model == "gpt-4.1-nano":
+                    input_token_cost = .1/1000000
+                    output_token_cost = .4/1000000
+                elif model == "gpt-4o-mini":
+                    input_token_cost = .15/1000000
+                    output_token_cost = .6/1000000
+                elif model == "gpt-4.1":
+                    input_token_cost = 2.00/1000000
+                    output_token_cost = 8.00/1000000
+                elif model == "o4-mini":
+                    input_token_cost = 1.10/1000000
+                    output_token_cost = 4.40/1000000
+    
+                cost = input_tokens*input_token_cost + output_tokens*output_token_cost
+                formatted_cost = "${:,.4f}".format(cost)
+                
+                st.markdown(f"**Total Cost:** {formatted_cost}")
 
 elif st.session_state.get('authentication_status') is False:
     st.error('Username/password is incorrect')
