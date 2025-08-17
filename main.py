@@ -62,8 +62,8 @@ if st.session_state.get('authentication_status'):
     INSTRUCTION = f.decrypt(INSTRUCTION_ENCRYPTED).decode()
 
     # Set page layout and title.
-    st.set_page_config(page_title="SecAware", page_icon=":shield:", layout="wide")
-    st.header(":shield: SecAware")
+    st.set_page_config(page_title="SecAware", page_icon=":siren:", layout="wide")
+    st.header(":siren: SecAware")
     
     # Field for OpenAI API key.
     openai_api_key = os.environ.get("OPENAI_API_KEY", None)
